@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize * */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap");
 html {
@@ -255,8 +256,26 @@ input[type="button"] {
     background: white;
     border-radius: 10px; }
 
+:root {
+  --star-size: 40px;
+  --star-color: #fff;
+  --star-background: #fc0; }
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1; }
+  .stars::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
+
 a {
-  color: #0074D9;
+  color: #302DBA;
   text-decoration: none;
   outline: 0; }
   a:hover, a:focus {
@@ -409,7 +428,7 @@ hr {
   grid-template-rows: 500px;
   grid-gap: 150px;
   justify-content: center; }
-  @media only screen and (max-width: 550px) {
+  @media (max-width: 768px) {
     .card-layout {
       grid-template-columns: repeat(1, 300px);
       grid-template-rows: repeat(2, 500px);
@@ -495,7 +514,11 @@ hr {
 .callLayout {
   display: flex;
   align-items: center;
+  align-content: center;
   justify-content: center; }
+  @media (max-width: 1440px) {
+    .callLayout {
+      justify-content: space-around; } }
   @media only screen and (max-width: 550px) {
     .callLayout {
       flex-direction: column; } }
@@ -503,20 +526,35 @@ hr {
     max-height: 800px;
     max-width: auto;
     z-index: 2; }
+    @media (max-width: 1024px) {
+      .callLayout #phone {
+        max-width: 50%; } }
     @media only screen and (max-width: 550px) {
       .callLayout #phone {
         display: none; } }
   .callLayout .callMessage {
-    text-align: center; }
+    max-height: 800px;
+    max-width: auto;
+    text-align: center;
+    padding-bottom: 100px; }
+    @media (max-width: 1024px) {
+      .callLayout .callMessage {
+        align-self: flex-start; } }
     .callLayout .callMessage img {
-      height: 300px;
+      max-height: 300px;
       width: auto; }
+      @media (max-width: 768px) {
+        .callLayout .callMessage img {
+          max-height: 200px; } }
       @media only screen and (max-width: 550px) {
         .callLayout .callMessage img {
           margin: 0;
           height: 200px; } }
     .callLayout .callMessage h1 {
       font-weight: 500; }
+      @media (max-width: 768px) {
+        .callLayout .callMessage h1 {
+          font-size: 40px; } }
       @media only screen and (max-width: 550px) {
         .callLayout .callMessage h1 {
           width: 100%;
@@ -564,9 +602,74 @@ hr {
   background: #F6F6F6;
   text-align: center;
   position: relative;
-  padding-bottom: 100px; }
+  height: 60%;
+  padding-top: 100px; }
+  @media (max-width: 1440px) {
+    #testimonials {
+      height: 90%; } }
   #testimonials::after {
-    box-shadow: 0 12px 10px -10px rgba(0, 0, 0, 0.2); }
+    box-shadow: 0 12px 10px -10px rgba(0, 0, 0, 0.3); }
+  #testimonials h4.title {
+    padding-bottom: 50px; }
+  #testimonials .card-layout {
+    grid-template-columns: repeat(3, 380px);
+    padding-bottom: 150px; }
+    @media (max-width: 1440px) {
+      #testimonials .card-layout {
+        grid-template-columns: repeat(3, 300px);
+        grid-gap: 80px; } }
+    @media (max-width: 1024px) {
+      #testimonials .card-layout {
+        grid-template-columns: repeat(2, 280px);
+        grid-template-rows: repeat(2, 500px);
+        padding-bottom: 150px;
+        grid-gap: 180px; } }
+    @media (max-width: 768px) {
+      #testimonials .card-layout {
+        grid-template-columns: repeat(1, 300px);
+        grid-template-rows: repeat(3, 500px);
+        grid-gap: 190px; } }
+  #testimonials .front, #testimonials .back {
+    border: 3px solid #EB2D26;
+    border-radius: 10px; }
+    #testimonials .front .circle, #testimonials .back .circle {
+      position: relative;
+      margin: -125px auto;
+      padding: 100px;
+      background: #302DBA;
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      color: #fff;
+      line-height: 100px; }
+      #testimonials .front .circle .text_circle, #testimonials .back .circle .text_circle {
+        font-size: 98px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+    #testimonials .front .stars, #testimonials .back .stars {
+      margin-top: 150px; }
+    #testimonials .front h4, #testimonials .back h4 {
+      margin: 0 0 20px 0; }
+    #testimonials .front p, #testimonials .back p {
+      font-size: 26px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical; }
+
+#footer {
+  height: 20vh;
+  text-align: center; }
+  #footer p {
+    padding-top: 40px; }
+  #footer ul {
+    display: flex;
+    justify-content: center; }
+    #footer ul li {
+      list-style: none;
+      margin-right: 30px; }
 
 .flex-video {
   height: 0;
@@ -587,14 +690,15 @@ hr {
 
 #header {
   background: #2D2BC0;
-  height: 630px;
+  height: 750px;
   position: relative;
   opacity: 100%;
   color: white;
-  text-align: center; }
+  text-align: center;
+  width: 100%; }
   @media only screen and (max-width: 550px) {
     #header {
-      height: 510px; } }
+      height: 500px; } }
   #header::after {
     content: '';
     position: absolute;
@@ -605,6 +709,8 @@ hr {
     background: radial-gradient(ellipse at bottom, rgba(60, 59, 110, 0.44) 7%, rgba(60, 59, 110, 0.72) 36%, rgba(60, 59, 110, 0.837973) 68%, #3c3b6e 100%);
     opacity: 1;
     z-index: -99; }
+  #header .wrapper {
+    position: relative; }
   #header h1, #header h4 {
     color: white;
     margin: 0; }
@@ -621,22 +727,33 @@ hr {
         margin-top: 40px; } }
   #header article {
     width: 80%;
-    margin: 0 auto;
-    position: relative; }
-    #header article #paulTruck {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); }
-    #header article img {
-      margin-top: 570px;
-      height: 400px;
-      width: auto; }
-      @media only screen and (max-width: 550px) {
-        #header article img {
-          margin-top: 520px;
-          height: 175px;
-          width: auto; } }
+    margin: 0 auto; }
+  #header #paulTruck {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; }
+    @media (max-width: 1440px) {
+      #header #paulTruck {
+        top: 75%;
+        width: 90%; } }
+    @media (max-width: 1024px) {
+      #header #paulTruck {
+        top: 82%;
+        width: 80%; } }
+    @media (max-width: 768px) {
+      #header #paulTruck {
+        top: 87%; } }
+    @media (max-width: 425) {
+      #header #paulTruck {
+        top: 90%; } }
+    @media (max-width: 320px) {
+      #header #paulTruck {
+        top: 99%; } }
+    #header #paulTruck img {
+      max-height: 500px;
+      max-width: 100%; }
 
 #brands ul {
   margin-top: 25px;
